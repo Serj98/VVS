@@ -30,22 +30,13 @@ public class HttpResponse {
             case GET:
                 try {
                     // TODO fix dir bug http://localhost:8080/src/test
-                    File file = new File("." + req.uri);
+                    File file = new File("C:\\Users\\Sergiu\\Desktop\\VVS Proiect\\VVS\\src\\main\\resources\\buna.html");
                     if (file.isDirectory()) {
                         fillHeaders(Status._200);
 
                         headers.add(ContentType.HTML.toString());
                         StringBuilder result = new StringBuilder("<html><head><title>VVS</title>");
-                        result.append(req.uri);
-                        result.append("</title></head><body><h1>Index of</h1> ");
-                        result.append(req.uri);
-                        result.append("</h1><hr><pre>");
 
-                        // TODO add Parent Directory
-                        File[] files = file.listFiles();
-                        for (File subfile : files) {
-                            result.append(" <a href=\"" + subfile.getPath() + "\">" + subfile.getPath() + "</a>\n");
-                        }
                         result.append("<hr></pre></body></html>");
                         fillResponse(result.toString());
                     } else if (file.exists()) {
